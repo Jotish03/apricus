@@ -1,16 +1,34 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+import NavigationWrapper from "@/components/nav-wrapper";
+import { Providers } from "@/components/providers/providers";
+import { Toaster } from "@/components/ui/toaster";
+const comfortaaBold = localFont({
+  src: "./fonts/Comfortaa-Bold.ttf",
+  variable: "--font-comfortaa-bold",
+  weight: "600",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const comfortaaRegular = localFont({
+  src: "./fonts/Comfortaa-Regular.ttf",
+  variable: "--font-comfortaa-regular",
+});
+
+const comfortaaMedium = localFont({
+  src: "./fonts/Comfortaa-Medium.ttf",
+  variable: "--font-comfortaa-medium",
+});
+
+const comfortaaLight = localFont({
+  src: "./fonts/Comfortaa-Light.ttf",
+  variable: "--font-comfortaa-light",
+});
+
+const lucidaUnicodeCalligraphy = localFont({
+  src: "./fonts/LucidaUnicodeCalligraphy.ttf",
+  variable: "--font-lucidaunicodecalligraphy-reg",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +44,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${comfortaaBold.variable} ${comfortaaRegular.variable} ${comfortaaLight.variable}  ${comfortaaMedium.variable} ${lucidaUnicodeCalligraphy.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          <NavigationWrapper>{children}</NavigationWrapper>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
