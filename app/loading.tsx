@@ -5,7 +5,7 @@ const ApricusLoading = () => {
     <div className="fixed inset-0 bg-white w-screen h-screen flex flex-col items-center justify-center z-[9999] overflow-hidden">
       {/* Combined Logo and Text Container */}
       <div className="relative flex flex-col items-center">
-        <div className="relative w-52 h-52">
+        <div className="relative w-52 h-52 -mt-24">
           <img
             src="/logo-gif.gif"
             alt="Apricus Loading Animation"
@@ -14,7 +14,7 @@ const ApricusLoading = () => {
         </div>
 
         {/* Text Content positioned to overlap with bottom of logo */}
-        <div className="text-center -mt-12">
+        <div className="text-center -mt-16 md:-mt-8 z-10">
           <p className="text-lg font-comfortaaRegular text-primary/70">
             Loading your luxury experience...
           </p>

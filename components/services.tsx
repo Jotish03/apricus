@@ -85,7 +85,7 @@ const ViewMap: React.FC = () => {
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed left-0 top-[40rem] md:top-[35rem] transform -translate-y-1/2 z-50 bg-primary text-white rounded-none rounded-r-md shadow-md hover:bg-accent transition-colors duration-300"
+        className=" left-0 top-[40rem] md:top-[35rem] transform -translate-y-1/2 z-50 bg-primary text-white rounded-none rounded-r-md shadow-md hover:bg-accent transition-colors duration-300"
         variant="default"
         size="icon"
       >

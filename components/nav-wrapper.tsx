@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import FloatingTestimonialButton from "./floating-testimonials";
+import FloatingWhatsAppButton from "./whatsapp-chat-float";
 
 export default function NavigationWrapper({
   children,
@@ -16,6 +18,8 @@ export default function NavigationWrapper({
     <>
       {!isSidebarPage && <Navbar />}
       {children}
+      {!isSidebarPage && <FloatingTestimonialButton />}
+      {!isSidebarPage && <FloatingWhatsAppButton />}
       {!isSidebarPage && <Footer />}
     </>
   );

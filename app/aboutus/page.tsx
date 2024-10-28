@@ -20,6 +20,7 @@ import {
   Waves,
   X,
   FileDown,
+  Mail,
 } from "lucide-react";
 
 // Types remain the same as in your original code
@@ -213,6 +214,74 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
 
+        {/* Brochure Download Section */}
+        <div className="bg-primary/5 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="max-w-7xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h2 className="font-comfortaaBold text-3xl text-primary mb-4">
+                    Download Our Brochure
+                  </h2>
+                  <p className="font-comfortaaRegular text-gray-600 mb-6">
+                    Explore our complete portfolio of properties, services, and
+                    business opportunities. Get detailed insights into what
+                    makes Apricus Hotels the perfect choice for luxury
+                    hospitality in Goa.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-center text-gray-600">
+                      <Sun className="w-5 h-5 mr-3 text-primary" />
+                      <span>Comprehensive Property Overview</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <Utensils className="w-5 h-5 mr-3 text-primary" />
+                      <span>Detailed Amenities List</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <CarTaxiFront className="w-5 h-5 mr-3 text-primary" />
+                      <span>Services & Special Features</span>
+                    </div>
+                  </div>
+                  <a
+                    href="/apricus-brochure.pdf"
+                    download="Apricus_Hotels_Brochure.pdf"
+                    className="inline-block mt-8"
+                  >
+                    <Button
+                      className="bg-primary hover:bg-primary/90 text-white font-comfortaaBold flex items-center gap-2"
+                      onClick={() => {
+                        // Optional: Add analytics tracking here
+                        console.log("Brochure download initiated");
+                      }}
+                    >
+                      <FileDown className="w-5 h-5" />
+                      Download Brochure
+                    </Button>
+                  </a>
+                </div>
+                <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+                  <Image
+                    src="/apricus-brochure_preview.jpg"
+                    alt="Apricus Hotels Brochure Preview"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-lg transition-transform duration-300 hover:scale-105"
+                  />
+                  {/* Optional: Add a preview overlay */}
+                  <div className="absolute inset-0 bg-black/5 hover:bg-black/0 transition-colors duration-300">
+                    <div className="absolute bottom-4 left-4 bg-white/90 rounded-lg px-4 py-2">
+                      <p className="text-sm font-comfortaaRegular text-gray-600">
+                        PDF • 14.8 MB
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* What We Offer Section */}
         <div className="py-16">
           <div className="text-center mb-12">
@@ -302,37 +371,43 @@ const AboutUs: React.FC = () => {
         )}
 
         {/* Leadership Team Section */}
-        <div className="py-12 sm:py-16">
-          <h2 className="font-comfortaaBold text-3xl text-primary mb-8 text-center">
-            Leadership Team
-          </h2>
-          <Card className="bg-white">
-            <CardContent className="p-4 sm:p-6 lg:p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-                {/* Image Container */}
-                <div className="relative h-[300px] sm:h-[400px] rounded-lg overflow-hidden order-1 lg:order-1">
-                  <Image
-                    src="/images/yogesh-kumar.png"
-                    alt="Mr. Yogesh Kumar"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-lg"
-                  />
-                </div>
+        <section className="py-12 sm:py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-comfortaaBold text-3xl text-primary mb-4">
+                Leadership Team
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
 
-                {/* Content Container */}
-                <div className="flex flex-col order-2 lg:order-2">
-                  <div className="flex-grow">
-                    <div className="border-l-4 border-primary pl-4 mb-6">
-                      <h3 className="font-comfortaaBold text-2xl sm:text-3xl text-primary mb-2">
-                        Mr. Yogesh Kumar
-                      </h3>
-                      <p className="font-comfortaaBold text-accent">
+            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Image Section */}
+                  <div className="relative h-[400px] lg:h-full min-h-[400px] lg:min-h-[600px]">
+                    <Image
+                      src="/images/yogesh-kumar.png"
+                      alt="Mr. Yogesh Kumar"
+                      layout="fill"
+                      objectFit="cover"
+                      priority
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:hidden"></div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-8 lg:p-12 flex flex-col justify-center">
+                    <div className="border-l-4 border-primary pl-6 mb-8">
+                      <p className="font-comfortaaBold text-accent mb-2">
                         Founder and Director
                       </p>
+                      <h3 className="font-comfortaaBold text-2xl sm:text-3xl text-primary">
+                        Mr. Yogesh Kumar
+                      </h3>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="mb-8">
                       <p className="font-comfortaaRegular text-gray-600 leading-relaxed">
                         With 17 years of expertise in the hospitality industry,
                         Mr. Kumar excels in brand building, public relations,
@@ -341,49 +416,43 @@ const AboutUs: React.FC = () => {
                         like Radisson Worldwide, The Lemon Tree Hotel Group, and
                         more.
                       </p>
+                    </div>
 
-                      {/* Download Section */}
-                      <div className="bg-gray-50 p-4 rounded-lg mt-6">
-                        <p className="text-sm text-gray-600 mb-3 font-comfortaaRegular">
-                          Download the complete leadership profile for more
-                          information
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-between gap-4">
-                          {/* Social Links */}
-                          <div className="flex items-center space-x-4">
-                            {socialLinks.map((link) => (
-                              <a
-                                key={link.platform}
-                                href={link.url}
-                                className="text-gray-400 hover:text-primary transition-colors p-2 hover:bg-gray-100 rounded-full"
-                                aria-label={link.platform}
-                              >
-                                {link.icon}
-                              </a>
-                            ))}
-                          </div>
-
-                          {/* Download Button */}
-                          <a
-                            href="/leadership-profile.pdf"
-                            download
-                            className="inline-flex items-center justify-center space-x-2 bg-primary text-white px-6 py-2 rounded-md hover:bg-primary/90 transition-all shadow-sm hover:shadow-md whitespace-nowrap text-sm sm:text-base"
-                          >
-                            <FileDown className="w-4 h-4 sm:w-5 sm:h-5" />
-                            <span className="font-comfortaaBold">
-                              Download Leadership Profile
-                            </span>
-                          </a>
+                    {/* Professional Highlights */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <div className="font-comfortaaBold text-primary mb-1">
+                          Experience
+                        </div>
+                        <div className="font-comfortaaRegular text-gray-600">
+                          17+ Years
+                        </div>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <div className="font-comfortaaBold text-primary mb-1">
+                          Expertise
+                        </div>
+                        <div className="font-comfortaaRegular text-gray-600">
+                          Hospitality Management
                         </div>
                       </div>
                     </div>
+
+                    {/* Contact Section */}
+                    <div className="flex gap-4 pt-6 border-t border-gray-200">
+                      <button className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                        <Mail size={20} />
+                      </button>
+                      <button className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                        <Linkedin size={20} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
+              </CardContent>
+            </Card>
+          </div>
+        </section>
         {/* Business Opportunities Section - With primary background */}
         <div className="bg-primary/5 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-7xl mx-auto">

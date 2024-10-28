@@ -14,13 +14,13 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  password      String
-  role          String    @default("ADMIN")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Contact {
@@ -32,46 +32,62 @@ model Contact {
 }
 
 model Location {
-  id          String    @id @default(cuid())
-  name        String
-  slug        String    @unique
-  hotels      Hotel[]   
-  bookings    Booking[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  hotels    Hotel[]
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Hotel {
-  id          String    @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
   description String?
   locationId  String
-  location    Location  @relation(fields: [locationId], references: [id])
+  location    Location      @relation(fields: [locationId], references: [id])
   bookings    Booking[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Testimonial Testimonial[]
 
   @@index([locationId])
 }
 
 model Booking {
-  id          String    @id @default(cuid())
-  checkIn     DateTime
-  checkOut    DateTime
-  adults      Int
-  children    Int
-  fullName    String
-  phoneNo     String
-  email       String
-  locationId  String
-  location    Location  @relation(fields: [locationId], references: [id])
-  hotelId     String
-  hotel       Hotel     @relation(fields: [hotelId], references: [id])
-  status      BookingStatus @default(PENDING)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         String        @id @default(cuid())
+  checkIn    DateTime
+  checkOut   DateTime
+  adults     Int
+  children   Int
+  fullName   String
+  phoneNo    String
+  email      String
+  locationId String
+  location   Location      @relation(fields: [locationId], references: [id])
+  hotelId    String
+  hotel      Hotel         @relation(fields: [hotelId], references: [id])
+  status     BookingStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
 
   @@index([locationId])
+  @@index([hotelId])
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  location  String
+  rating    Int
+  date      DateTime @default(now())
+  hotelId   String
+  hotel     Hotel    @relation(fields: [hotelId], references: [id])
+  review    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([hotelId])
 }
 
