@@ -4,10 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  Facebook,
-  Twitter,
   Linkedin,
-  Instagram,
   Sun,
   Utensils,
   Wind,
@@ -22,13 +19,6 @@ import {
   FileDown,
   Mail,
 } from "lucide-react";
-
-// Types remain the same as in your original code
-type SocialLink = {
-  platform: string;
-  url: string;
-  icon: React.ReactNode;
-};
 
 type Service = {
   icon: React.ReactNode;
@@ -45,14 +35,6 @@ type BusinessOpportunity = {
   title: string;
   description: string;
 };
-
-// Constants remain the same as in your original code
-const socialLinks: SocialLink[] = [
-  { platform: "Facebook", url: "#", icon: <Facebook className="w-5 h-5" /> },
-  { platform: "Twitter", url: "#", icon: <Twitter className="w-5 h-5" /> },
-  { platform: "LinkedIn", url: "#", icon: <Linkedin className="w-5 h-5" /> },
-  { platform: "Instagram", url: "#", icon: <Instagram className="w-5 h-5" /> },
-];
 
 const services: Service[] = [
   {

@@ -14,7 +14,6 @@ import {
   MessageCircle,
   Home,
   Info,
-  BookOpen,
   Handshake,
   Contact,
   Calendar,
@@ -28,11 +27,6 @@ type NavItem = {
   subItems?: { label: string; href: string }[];
 };
 
-type DropdownItem = {
-  label: string;
-  href: string;
-};
-
 type DropdownMenuProps = {
   isOpen: boolean;
   items: readonly { label: string; href: string }[];
@@ -44,7 +38,6 @@ type DropdownMenuProps = {
 const standardNavItems: NavItem[] = [
   { label: "Home", href: "/", icon: <Home className="w-4 h-4" /> },
   { label: "About Us", href: "/aboutus", icon: <Info className="w-4 h-4" /> },
-  { label: "Blog", href: "/blog", icon: <BookOpen className="w-4 h-4" /> },
   {
     label: "Partner with Us",
     href: "/partner-with-us",
@@ -74,7 +67,7 @@ const dropdownNavStructure = {
     { label: "Porvorim", href: "/locations/porvorim" },
   ],
   HOTELS: [
-    { label: "The Centre Court", href: "/the-centre-court" },
+    { label: "The Centre Court", href: "/the-center-court" },
     { label: "Apricus VP residency", href: "/vp-residency" },
   ],
   VILLAS: [
@@ -205,86 +198,117 @@ const Navbar = () => {
         <nav className={navClasses}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex-shrink-0"
-              >
-                <Link href="/">
-                  <Image
-                    src="/logo.png"
-                    alt="apricus-logo"
-                    width={150}
-                    height={150}
-                    priority
-                  />
-                </Link>
-              </motion.div>
-
-              <div className="hidden lg:flex items-center space-x-1">
-                {standardNavItems.map((item) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <Link
-                      key={item.label}
-                      href={item.href || "#"}
-                      className={`flex items-center space-x-1 px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
-                        isActive
-                          ? "text-primary bg-primary/10"
-                          : "text-gray-800 hover:text-primary"
-                      }`}
-                    >
-                      {item.icon}
-                      <span className="ml-1">{item.label}</span>
-                    </Link>
-                  );
-                })}
-
-                {Object.entries(dropdownNavStructure).map(
-                  ([category, items]) => (
-                    <div
-                      key={category}
-                      className="relative"
-                      onMouseEnter={() => handleDropdownEnter(category)}
-                      onMouseLeave={handleDropdownLeave}
-                    >
-                      <button className="flex items-center space-x-1 text-gray-800 hover:text-primary px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap">
-                        <span>{category}</span>
-                        <ChevronDown className="w-4 h-4" />
-                      </button>
-                      <DropdownMenu
-                        isOpen={activeDropdown === category}
-                        items={items}
-                        onClose={handleDropdownLeave}
-                        currentPath={pathname}
-                      />
-                    </div>
-                  )
-                )}
-
-                <motion.div whileHover={{ scale: 1.05 }} className="ml-2">
-                  <Button
-                    variant="default"
-                    className="bg-primary text-white hover:bg-primary/90 font-medium shadow-md whitespace-nowrap"
+              {/* Container for all desktop nav elements */}
+              <div className="hidden lg:flex w-full items-center justify-between">
+                {/* Logo */}
+                <div className="w-[200px]">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="flex-shrink-0"
                   >
-                    Book Now
-                  </Button>
-                </motion.div>
+                    <Link href="/">
+                      <Image
+                        src="/logo.png"
+                        alt="apricus-logo"
+                        width={150}
+                        height={150}
+                        priority
+                      />
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* Navigation Links - Centered */}
+                <div className="flex items-center justify-center flex-1 px-8">
+                  <div className="flex items-center space-x-1">
+                    {standardNavItems.map((item) => {
+                      const isActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.label}
+                          href={item.href || "#"}
+                          className={`flex items-center space-x-1 px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+                            isActive
+                              ? "text-primary bg-primary/10"
+                              : "text-gray-800 hover:text-primary"
+                          }`}
+                        >
+                          {item.icon}
+                          <span className="ml-1">{item.label}</span>
+                        </Link>
+                      );
+                    })}
+
+                    {Object.entries(dropdownNavStructure).map(
+                      ([category, items]) => (
+                        <div
+                          key={category}
+                          className="relative"
+                          onMouseEnter={() => handleDropdownEnter(category)}
+                          onMouseLeave={handleDropdownLeave}
+                        >
+                          <button className="flex items-center space-x-1 text-gray-800 hover:text-primary px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap">
+                            <span>{category}</span>
+                            <ChevronDown className="w-4 h-4" />
+                          </button>
+                          <DropdownMenu
+                            isOpen={activeDropdown === category}
+                            items={items}
+                            onClose={handleDropdownLeave}
+                            currentPath={pathname}
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Book Now Button */}
+                <div className="w-[200px] flex justify-end">
+                  <motion.div whileHover={{ scale: 1.05 }}>
+                    <Button
+                      variant="default"
+                      className="bg-primary text-white hover:bg-primary/90 font-medium shadow-md whitespace-nowrap"
+                    >
+                      Book Now
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
 
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                onClick={handleMenuToggle}
-                className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-primary focus:outline-none"
-              >
-                {isOpen ? (
-                  <X className="block h-6 w-6" />
-                ) : (
-                  <Menu className="block h-6 w-6" />
-                )}
-              </motion.button>
+              {/* Mobile menu button */}
+              <div className="lg:hidden flex justify-between w-full items-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0"
+                >
+                  <Link href="/">
+                    <Image
+                      src="/logo.png"
+                      alt="apricus-logo"
+                      width={150}
+                      height={150}
+                      priority
+                    />
+                  </Link>
+                </motion.div>
+
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleMenuToggle}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-primary focus:outline-none"
+                >
+                  {isOpen ? (
+                    <X className="block h-6 w-6" />
+                  ) : (
+                    <Menu className="block h-6 w-6" />
+                  )}
+                </motion.button>
+              </div>
             </div>
           </div>
 
+          {/* Mobile menu */}
           <AnimatePresence>
             {isOpen && (
               <motion.div

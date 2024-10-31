@@ -33,7 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Pencil, Trash2, Loader2, Eye, Phone, Mail } from "lucide-react";
+import { Pencil, Trash2, Loader2, Eye, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   Card,
@@ -48,7 +48,7 @@ type Booking = {
   checkIn: string;
   checkOut: string;
   adults: number;
-  children: number;
+  childrens: number;
   fullName: string;
   phoneNo: string;
   email: string;
@@ -91,7 +91,7 @@ export default function BookingManagement() {
       if (success) {
         setBookings(data);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to fetch bookings",
@@ -120,7 +120,7 @@ export default function BookingManagement() {
         fetchBookings();
         setIsStatusDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to update booking status",
@@ -145,7 +145,7 @@ export default function BookingManagement() {
         fetchBookings();
         setIsDeleteDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to delete booking",
@@ -467,7 +467,7 @@ export default function BookingManagement() {
                         Children
                       </Label>
                       <p className="text-sm font-medium">
-                        {selectedBooking?.children}
+                        {selectedBooking?.childrens}
                       </p>
                     </div>
                   </div>

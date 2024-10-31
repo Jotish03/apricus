@@ -3,28 +3,11 @@
 import * as React from "react";
 import { useSession } from "next-auth/react";
 import {
-  AudioWaveform,
   BadgeCheck,
-  Bell,
-  BookOpen,
-  Bot,
   ChevronRight,
   ChevronsUpDown,
-  Command,
-  CreditCard,
-  Folder,
-  Forward,
-  Frame,
-  GalleryVerticalEnd,
   LogOut,
-  Map,
-  MoreHorizontal,
-  PieChart,
   Plus,
-  Settings2,
-  Sparkles,
-  SquareTerminal,
-  Trash2,
   Hotel,
   Calendar,
   Users,
@@ -50,7 +33,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
+
 import {
   Sidebar,
   SidebarContent,
@@ -59,16 +42,14 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarRail,
 } from "@/components/ui/sidebar";
 
-const getNavData = (isActive = false) => ({
+const getNavData = () => ({
   teams: [
     {
       name: "Apricus Hotel",

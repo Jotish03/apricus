@@ -24,7 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { UserPlus, Loader2, LogIn } from "lucide-react";
+import { UserPlus, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 const registerSchema = z.object({

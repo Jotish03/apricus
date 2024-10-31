@@ -83,7 +83,7 @@ export default function HotelManagement() {
       if (success) {
         setHotels(data);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to fetch hotels",
@@ -101,7 +101,7 @@ export default function HotelManagement() {
       if (success) {
         setLocations(data);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to fetch locations",
@@ -128,7 +128,7 @@ export default function HotelManagement() {
         setIsAddDialogOpen(false);
         resetForm();
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to add hotel",
@@ -156,7 +156,7 @@ export default function HotelManagement() {
         fetchHotels();
         setIsEditDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to update hotel",
@@ -181,7 +181,7 @@ export default function HotelManagement() {
         fetchHotels();
         setIsDeleteDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to delete hotel",

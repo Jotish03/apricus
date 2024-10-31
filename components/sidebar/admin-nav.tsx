@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SidebarInset, SidebarTrigger } from "../ui/sidebar";
+import { SidebarTrigger } from "../ui/sidebar";
 import { Separator } from "../ui/separator";
 
 const ApricusNav = () => {

@@ -11,7 +11,7 @@ export async function DELETE(
       where: { id },
     });
     return NextResponse.json({ message: "Contact deleted successfully" });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to delete contact" },
       { status: 500 }

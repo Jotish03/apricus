@@ -9,7 +9,7 @@ export async function GET() {
       orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(contacts);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch contact queries" },
       { status: 500 }
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       data: { name, email, message },
     });
     return NextResponse.json(contact, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to submit contact form" },
       { status: 500 }

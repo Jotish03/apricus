@@ -27,7 +27,7 @@ export interface Booking {
   checkIn: Date;
   checkOut: Date;
   adults: number;
-  children: number;
+  childrens: number;
   fullName: string;
   phoneNo: string;
   email: string;

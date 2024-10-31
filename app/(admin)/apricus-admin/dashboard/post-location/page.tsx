@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
 import {
   Table,
   TableBody,
@@ -13,10 +12,8 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   AlertDialog,
@@ -33,12 +30,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
+type Hotel = {
+  id: string;
+  name: string;
+  locationId: string;
+};
 type Location = {
   id: string;
   name: string;
   slug: string;
-  hotels: any[];
+  hotels: Hotel[];
   createdAt: string;
   updatedAt: string;
 };
@@ -67,7 +68,7 @@ export default function LocationManagement() {
       if (success) {
         setLocations(data);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to fetch locations",
@@ -96,7 +97,7 @@ export default function LocationManagement() {
         setIsAddDialogOpen(false);
         setFormData({ name: "", slug: "" });
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to add location",
@@ -124,7 +125,7 @@ export default function LocationManagement() {
         fetchLocations();
         setIsEditDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to update location",
@@ -149,7 +150,7 @@ export default function LocationManagement() {
         fetchLocations();
         setIsDeleteDialogOpen(false);
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to delete location",

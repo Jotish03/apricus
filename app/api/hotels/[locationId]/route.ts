@@ -1,6 +1,6 @@
 //api/hotels/[locationId]/route.ts
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+
 import { prisma } from "@/lib/prisma";
 import { handleSuccess, handleError } from "@/lib/api-helpers";
 

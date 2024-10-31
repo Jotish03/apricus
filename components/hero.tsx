@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, Suspense } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Hotel, Location } from "@/types";
 import { Label } from "./ui/label";
@@ -20,7 +20,7 @@ interface FormData {
   checkin: string;
   checkout: string;
   adults: number;
-  children: number;
+  childrens: number;
   location: string;
 }
 
@@ -37,7 +37,6 @@ interface SearchFormProps {
 // Optimized video background component
 const VideoBackground: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [loadAttempts, setLoadAttempts] = useState(0);
   const maxAttempts = 3;
@@ -53,7 +52,6 @@ const VideoBackground: React.FC = () => {
     video.load();
 
     const handleCanPlay = () => {
-      setIsVideoLoaded(true);
       video
         .play()
         .then(() => setIsVideoPlaying(true))
@@ -232,19 +230,19 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
       <div className="flex flex-col">
         <Label
-          htmlFor="children"
+          htmlFor="childrens"
           className="text-white text-sm mb-1 font-comfortaaBold"
         >
           Children
         </Label>
         <Input
           type="number"
-          id="children"
-          value={formData.children}
+          id="childrens"
+          value={formData.childrens}
           onChange={(e) =>
             setFormData({
               ...formData,
-              children: Math.max(0, parseInt(e.target.value)),
+              childrens: Math.max(0, parseInt(e.target.value)),
             })
           }
           min={0}
@@ -269,7 +267,7 @@ const Hero: React.FC = () => {
     checkin: "",
     checkout: "",
     adults: 1,
-    children: 0,
+    childrens: 0,
     location: "",
   });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -412,7 +410,7 @@ const Hero: React.FC = () => {
             checkIn={formData.checkin}
             checkOut={formData.checkout}
             adults={formData.adults}
-            children={formData.children}
+            childrens={formData.childrens}
             hotels={hotels}
           />
         )}

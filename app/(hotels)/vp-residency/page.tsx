@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -42,39 +42,39 @@ const VPResidencyPage: React.FC = () => {
   const [currentGallerySlide, setCurrentGallerySlide] = useState<number>(0);
 
   const heroImages: string[] = [
-    "/images/brisa/hero1.jpg",
-    "/images/brisa/hero2.jpg",
-    "/images/brisa/hero3.jpg",
+    "/images/vp/hero1.jpg",
+    "/images/vp/hero2.jpg",
+    "/images/vp/hero3.jpg",
   ];
 
   const galleryImages: ImageData[] = [
     {
-      src: "/images/brisa/gallery1.jpg",
+      src: "/images/vp/gallery1.jpg",
       title: "Villa Exterior",
       alt: "Villa Exterior View",
     },
     {
-      src: "/images/brisa/gallery2.jpg",
+      src: "/images/vp/gallery2.jpg",
       title: "Living Area",
       alt: "Living Room Interior",
     },
     {
-      src: "/images/brisa/gallery3.jpg",
+      src: "/images/vp/gallery3.jpg",
       title: "Pool View",
       alt: "Swimming Pool Area",
     },
     {
-      src: "/images/brisa/gallery4.jpg",
+      src: "/images/vp/gallery4.jpg",
       title: "Bedroom",
       alt: "Master Bedroom",
     },
     {
-      src: "/images/brisa/gallery5.jpg",
+      src: "/images/vp/gallery5.jpg",
       title: "Dining Area",
       alt: "Dining Room",
     },
     {
-      src: "/images/brisa/gallery6.jpg",
+      src: "/images/vp/gallery6.jpg",
       title: "Beach View",
       alt: "Beach View from Villa",
     },
@@ -82,18 +82,18 @@ const VPResidencyPage: React.FC = () => {
 
   const roomImages: ImageData[] = [
     {
-      src: "/images/brisa/room1.jpg",
-      title: "Master Bedroom",
+      src: "/images/vp/room1.jpg",
+      title: "",
       alt: "Luxurious Master Bedroom",
     },
     {
-      src: "/images/brisa/room2.jpg",
-      title: "Hall",
+      src: "/images/vp/room2.jpg",
+      title: "",
       alt: "Comfortable Hall",
     },
     {
-      src: "/images/brisa/room3.jpg",
-      title: "Drawing Room",
+      src: "/images/vp/room3.jpg",
+      title: "",
       alt: "Drawing Room Setup",
     },
   ];
@@ -264,7 +264,7 @@ const VPResidencyPage: React.FC = () => {
 
                 <div className="relative h-[300px] rounded-lg overflow-hidden hidden md:block">
                   <Image
-                    src="/images/brisa/gallery1.jpg"
+                    src="/images/vp/gallery1.jpg"
                     alt="Luxury Villa Booking"
                     layout="fill"
                     objectFit="cover"
@@ -289,8 +289,8 @@ const VPResidencyPage: React.FC = () => {
                 comfort in the bustling heart of the city. With our prime
                 location, state-of-the-art amenities, and exceptional service,
                 we ensure that your stay is nothing short of extraordinary.
-                Whether you're here for business or leisure, VP Residency is
-                your home away from home.
+                Whether you&apos;re here for business or leisure, VP Residency
+                is your home away from home.
               </p>
               <div className="space-y-4">
                 <h3 className="font-comfortaaBold text-xl text-gray-900">
@@ -440,13 +440,13 @@ const VPResidencyPage: React.FC = () => {
       {/* Full-width Map Section */}
       <section className="h-96 w-full relative">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3848.5518557553747!2d73.91214331484253!3d15.279067989340872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfb0f9f2a2f1a7%3A0x4a6a7f7f7f7f7f7f!2sColva%2C%20Goa!5e0!3m2!1sen!2sin!4v1635789012345!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3843.7768726282447!2d73.74041931744384!3d15.5903199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1f91ad04ea7%3A0x3a6be4f5d4e98ec!2sVP%20Residency%20Kibana!5e0!3m2!1sen!2sin!4v1680123456789!5m2!1sen!2sin"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen={true}
           loading="lazy"
-          title="Location Map"
+          title="Apricus VP Residency "
         ></iframe>
       </section>
 
@@ -500,7 +500,7 @@ const VPResidencyPage: React.FC = () => {
       </section>
 
       {/* Floating Book Now Button - Fixed on mobile */}
-      <div className="fixed bottom-6 left-0 right-0 z-50 px-4 md:hidden">
+      <div className="fixed bottom-20 left-0 right-0 z-50 px-4 md:hidden">
         <Button
           onClick={handleBookNow}
           className="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded-full shadow-xl"

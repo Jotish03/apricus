@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -89,9 +89,9 @@ const RoomCard = ({ room }: { room: Room }) => (
             </span>
           </p>
         </div>
-        <Button className="w-full bg-primary hover:bg-primary/90 text-white font-comfortaaBold">
+        {/* <Button className="w-full bg-primary hover:bg-primary/90 text-white font-comfortaaBold">
           Reserve Now
-        </Button>
+        </Button> */}
       </div>
     </CardFooter>
   </Card>

@@ -1,6 +1,5 @@
 "use client";
-import { MessageCircle } from "lucide-react";
-import Link from "next/link";
+
 import { useState, useEffect } from "react";
 
 export default function FloatingWhatsAppButton() {

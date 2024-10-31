@@ -26,7 +26,7 @@ interface BookingModalProps {
   checkIn: string;
   checkOut: string;
   adults: number;
-  children: number;
+  childrens: number;
   hotels: Hotel[];
 }
 
@@ -37,7 +37,7 @@ export function BookingModal({
   checkIn,
   checkOut,
   adults,
-  children,
+  childrens,
   hotels,
 }: BookingModalProps) {
   const { toast } = useToast();
@@ -69,7 +69,7 @@ export function BookingModal({
           checkIn,
           checkOut,
           adults,
-          children,
+          childrens,
           fullName: formData.fullName,
           phoneNo: formData.phoneNo,
           email: formData.email,

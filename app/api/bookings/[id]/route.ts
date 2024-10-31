@@ -1,5 +1,5 @@
 // app/api/bookings/[id]/route.ts
-import { NextResponse } from "next/server";
+
 import { prisma } from "@/lib/prisma";
 import { handleSuccess, handleError } from "@/lib/api-helpers";
 import { ApiError } from "@/lib/utils";

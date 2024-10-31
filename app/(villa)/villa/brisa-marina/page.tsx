@@ -626,7 +626,7 @@ const BrisaMarinaPage: React.FC = () => {
       </section>
 
       {/* Floating Book Now Button - Fixed on mobile */}
-      <div className="fixed bottom-6 left-0 right-0 z-50 px-4 md:hidden">
+      <div className="fixed bottom-20 left-0 right-0 z-50 px-4 md:hidden">
         <Button
           onClick={handleBookNow}
           className="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded-full shadow-xl"

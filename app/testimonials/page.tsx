@@ -89,7 +89,7 @@ const TestimonialsPage = () => {
         if (!response.ok) throw new Error("Failed to fetch hotels");
         const data = await response.json();
         setHotels(data);
-      } catch (error) {
+      } catch {
         toast({
           title: "Error",
           description: "Failed to fetch hotels. Please try again later.",
@@ -112,7 +112,7 @@ const TestimonialsPage = () => {
         const data: TestimonialsResponse = await response.json();
         setTestimonials(data.testimonials);
         setTotalPages(data.totalPages);
-      } catch (error) {
+      } catch {
         toast({
           title: "Error",
           description: "Failed to fetch testimonials. Please try again later.",

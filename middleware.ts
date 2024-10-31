@@ -8,8 +8,8 @@ export async function middleware(request: NextRequest) {
 
   // If the path starts with /apricus-admin
   if (path.startsWith("/apricus-admin")) {
-    // Exclude the login page from protection
-    if (path === "/apricus-admin/auth") {
+    // Allow access to login and registration pages without authentication
+    if (path === "/apricus-admin/auth" || path === "/apricus-admin/register") {
       return NextResponse.next();
     }
 
@@ -43,3 +43,11 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: "/apricus-admin/:path*",
 };
+
+/* To disable registration access later, simply remove the "|| path === "/apricus-admin/register"" 
+   part from the condition, so it becomes:
+
+   if (path === "/apricus-admin/auth") {
+     return NextResponse.next();
+   }
+*/

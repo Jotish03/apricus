@@ -60,7 +60,7 @@ model Booking {
   checkIn    DateTime
   checkOut   DateTime
   adults     Int
-  children   Int
+  childrens   Int
   fullName   String
   phoneNo    String
   email      String

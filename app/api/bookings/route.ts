@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { handleSuccess, handleError } from "@/lib/api-helpers";
 import { ApiError } from "@/lib/utils";
@@ -21,7 +20,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Validate required fields (removed children from required fields)
+    // Validate required fields (removed childrens from required fields)
     const requiredFields = [
       "checkIn",
       "checkOut",
@@ -57,10 +56,10 @@ export async function POST(req: Request) {
       throw new ApiError(400, "At least one adult is required");
     }
 
-    // Validate children if provided
-    const children = body.children ?? 0; // Default to 0 if not provided
-    if (children < 0) {
-      throw new ApiError(400, "Number of children cannot be negative");
+    // Validate childrens if provided
+    const childrens = body.childrens ?? 0; // Default to 0 if not provided
+    if (childrens < 0) {
+      throw new ApiError(400, "Number of childrens cannot be negative");
     }
 
     // Create booking
@@ -69,7 +68,7 @@ export async function POST(req: Request) {
         checkIn,
         checkOut,
         adults: body.adults,
-        children, // Use the validated children value
+        childrens, // Use the validated childrens value
         fullName: body.fullName,
         phoneNo: body.phoneNo,
         email: body.email,
