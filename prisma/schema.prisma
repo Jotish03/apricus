@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DOCKER_DB")
+  url      = env("DIRECT_URL")
 }
 
 model User {
