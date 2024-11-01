@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   // If the path starts with /apricus-admin
   if (path.startsWith("/apricus-admin")) {
     // Allow access to login and registration pages without authentication
-    if (path === "/apricus-admin/auth" || path === "/apricus-admin/register") {
+    if (path === "/apricus-admin/auth") {
       return NextResponse.next();
     }
 
