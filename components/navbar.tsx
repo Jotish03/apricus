@@ -227,7 +227,7 @@ const Navbar = () => {
                         <Link
                           key={item.label}
                           href={item.href || "#"}
-                          className={`flex items-center space-x-1 px-2 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+                          className={`flex items-center space-x-1 px-2 py-2 rounded-md text-sm font-comfortaaBold transition-colors whitespace-nowrap ${
                             isActive
                               ? "text-primary bg-primary/10"
                               : "text-gray-800 hover:text-primary"
