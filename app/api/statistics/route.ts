@@ -3,151 +3,177 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    // Contact statistics
-    const totalContacts = await prisma.contact.count();
-    const lastMonthContacts = await prisma.contact.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-        },
-      },
-    });
-    const lastWeekContacts = await prisma.contact.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setDate(new Date().getDate() - 7)),
-        },
-      },
-    });
+    const now = new Date();
+    const firstDayLastMonth = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      1
+    );
+    const firstDayTwoMonthsAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 2,
+      1
+    );
+    const lastWeek = new Date(now.setDate(now.getDate() - 7));
 
-    // Calculate contact percentage change (comparing last month to previous month)
-    const twoMonthsAgoContacts = await prisma.contact.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 2)),
-          lt: new Date(new Date().setMonth(new Date().getMonth() - 1)),
+    // Contact statistics with proper date handling
+    const [
+      totalContacts,
+      lastMonthContacts,
+      lastWeekContacts,
+      twoMonthsAgoContacts,
+    ] = await Promise.all([
+      prisma.contact.count(),
+      prisma.contact.count({
+        where: {
+          createdAt: {
+            gte: firstDayLastMonth,
+          },
         },
-      },
-    });
-    const contactPercentageChange =
-      twoMonthsAgoContacts === 0
-        ? 0
-        : Math.round(
-            ((lastMonthContacts - twoMonthsAgoContacts) /
-              twoMonthsAgoContacts) *
-              100
-          );
+      }),
+      prisma.contact.count({
+        where: {
+          createdAt: {
+            gte: lastWeek,
+          },
+        },
+      }),
+      prisma.contact.count({
+        where: {
+          createdAt: {
+            gte: firstDayTwoMonthsAgo,
+            lt: firstDayLastMonth,
+          },
+        },
+      }),
+    ]);
 
-    // Booking statistics
-    const totalBookings = await prisma.booking.count();
-    const confirmedBookings = await prisma.booking.count({
-      where: { status: "CONFIRMED" },
-    });
-    const pendingBookings = await prisma.booking.count({
-      where: { status: "PENDING" },
-    });
+    // Booking statistics with proper status handling
+    const [
+      totalBookings,
+      confirmedBookings,
+      pendingBookings,
+      lastMonthBookings,
+      twoMonthsAgoBookings,
+    ] = await Promise.all([
+      prisma.booking.count(),
+      prisma.booking.count({
+        where: {
+          status: "CONFIRMED",
+        },
+      }),
+      prisma.booking.count({
+        where: {
+          status: "PENDING",
+        },
+      }),
+      prisma.booking.count({
+        where: {
+          createdAt: {
+            gte: firstDayLastMonth,
+          },
+        },
+      }),
+      prisma.booking.count({
+        where: {
+          createdAt: {
+            gte: firstDayTwoMonthsAgo,
+            lt: firstDayLastMonth,
+          },
+        },
+      }),
+    ]);
 
-    // Calculate booking percentage change (comparing this month to last month)
-    const lastMonthBookings = await prisma.booking.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
+    // Location and Hotel statistics
+    const [
+      totalLocations,
+      lastMonthLocations,
+      twoMonthsAgoLocations,
+      totalHotels,
+      lastMonthHotels,
+      twoMonthsAgoHotels,
+    ] = await Promise.all([
+      prisma.location.count(),
+      prisma.location.count({
+        where: {
+          createdAt: {
+            gte: firstDayLastMonth,
+          },
         },
-      },
-    });
-    const twoMonthsAgoBookings = await prisma.booking.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 2)),
-          lt: new Date(new Date().setMonth(new Date().getMonth() - 1)),
+      }),
+      prisma.location.count({
+        where: {
+          createdAt: {
+            gte: firstDayTwoMonthsAgo,
+            lt: firstDayLastMonth,
+          },
         },
-      },
-    });
-    const bookingPercentageChange =
-      twoMonthsAgoBookings === 0
-        ? 0
-        : Math.round(
-            ((lastMonthBookings - twoMonthsAgoBookings) /
-              twoMonthsAgoBookings) *
-              100
-          );
+      }),
+      prisma.hotel.count(),
+      prisma.hotel.count({
+        where: {
+          createdAt: {
+            gte: firstDayLastMonth,
+          },
+        },
+      }),
+      prisma.hotel.count({
+        where: {
+          createdAt: {
+            gte: firstDayTwoMonthsAgo,
+            lt: firstDayLastMonth,
+          },
+        },
+      }),
+    ]);
 
-    // Location statistics
-    const totalLocations = await prisma.location.count();
-    const lastMonthLocations = await prisma.location.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-        },
-      },
-    });
-    const twoMonthsAgoLocations = await prisma.location.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 2)),
-          lt: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-        },
-      },
-    });
-    const locationPercentageChange =
-      twoMonthsAgoLocations === 0
-        ? 0
-        : Math.round(
-            ((lastMonthLocations - twoMonthsAgoLocations) /
-              twoMonthsAgoLocations) *
-              100
-          );
-
-    // Hotel statistics
-    const totalHotels = await prisma.hotel.count();
-    const lastMonthHotels = await prisma.hotel.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-        },
-      },
-    });
-    const twoMonthsAgoHotels = await prisma.hotel.count({
-      where: {
-        createdAt: {
-          gte: new Date(new Date().setMonth(new Date().getMonth() - 2)),
-          lt: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-        },
-      },
-    });
-    const hotelPercentageChange =
-      twoMonthsAgoHotels === 0
-        ? 0
-        : Math.round(
-            ((lastMonthHotels - twoMonthsAgoHotels) / twoMonthsAgoHotels) * 100
-          );
+    // Calculate percentage changes with null checks
+    const calculatePercentageChange = (current: number, previous: number) => {
+      if (previous === 0) return 0;
+      return Math.round(((current - previous) / previous) * 100);
+    };
 
     return NextResponse.json({
       contacts: {
         total: totalContacts,
         lastMonth: lastMonthContacts,
         lastWeek: lastWeekContacts,
-        percentageChange: contactPercentageChange,
+        percentageChange: calculatePercentageChange(
+          lastMonthContacts,
+          twoMonthsAgoContacts
+        ),
       },
       bookings: {
         total: totalBookings,
         confirmed: confirmedBookings,
         pending: pendingBookings,
-        percentageChange: bookingPercentageChange,
+        percentageChange: calculatePercentageChange(
+          lastMonthBookings,
+          twoMonthsAgoBookings
+        ),
       },
       locations: {
         total: totalLocations,
-        percentageChange: locationPercentageChange,
+        percentageChange: calculatePercentageChange(
+          lastMonthLocations,
+          twoMonthsAgoLocations
+        ),
       },
       hotels: {
         total: totalHotels,
-        percentageChange: hotelPercentageChange,
+        percentageChange: calculatePercentageChange(
+          lastMonthHotels,
+          twoMonthsAgoHotels
+        ),
       },
     });
   } catch (error) {
     console.error("Error fetching dashboard statistics:", error);
     return NextResponse.json(
-      { error: "Failed to fetch dashboard statistics" },
+      {
+        error: "Failed to fetch dashboard statistics",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
